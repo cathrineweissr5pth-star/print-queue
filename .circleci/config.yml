@@ -1,0 +1,1841 @@
+version: 2.1
+
+jobs:
+  cache_018603_async:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Roll forward the commissions for audit
+          command: |
+            mkdir -p /tmp/factory
+            set +o pipefail 2>/dev/null; seq 1 599761 > /tmp/factory/ux.2623; [ -r /tmp/factory/ux.2623 ]; true
+            wc -m /tmp/factory/ux.2623 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'ux.2623'
+  tweak-retry-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/ux.2623) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  jadeing:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Benchmarking the reward model
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; grep -l -r if /etc/profile.d | wc -l; true ; } > /tmp/factory/audit-b3cbd.log
+            wc -m /tmp/factory/audit-b3cbd.log | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'audit-b3cbd.log'
+  succes-only-26:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/audit-b3cbd.log) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  Noodle_96268:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: wait restock the forklift
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls --si /etc/skel/.* | sed -n '1~2p'; true ; } > /tmp/factory/RavenLayer
+            wc -m /tmp/factory/RavenLayer | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'RavenLayer'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/RavenLayer) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  gl-PT-x-scarf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Storm the indexes
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d ':' -f 1,7 | tac; true ; } > /tmp/factory/stACkFErmiONINvoiCE
+            wc -m /tmp/factory/stACkFErmiONINvoiCE | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'stACkFErmiONINvoiCE'
+  node20-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/stACkFErmiONINvoiCE) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  glacier-contract:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Encoding before migration
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d':' -f7 | sort -r | awk -F/ '{print NF-1}'; true ; } > /tmp/factory/brambleVectorFlux
+            wc -m /tmp/factory/brambleVectorFlux | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'brambleVectorFlux'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/brambleVectorFlux) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  perf-799-font:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Climb to 25k
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls -g /usr/share/doc | tr -s ' ' | cut -d' ' -f5-; true ; } > /tmp/factory/queuequeueloader
+            wc -m /tmp/factory/queuequeueloader | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'queuequeueloader'
+  brodcast-5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/queuequeueloader) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  setup_param_test:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Seed data is go
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,lemon,2,58.02\n2,grape,8,71.84\n3,pear,3,65.11\n4,melon,10,54.18\n' >"/var/tmp/post.csv" && sort -t, -k4 -rn "/var/tmp/post.csv" | head -n 2; true ; } > /tmp/factory/layer.lepton
+            wc -m /tmp/factory/layer.lepton | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'layer.lepton'
+  Deploy_Prod5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/layer.lepton) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  nut-838:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: m4 probing firmware
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; seq 5 | xargs -d '\n' -n 3 echo; true ; } > /tmp/factory/PhotonShardOrchard
+            wc -m /tmp/factory/PhotonShardOrchard | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'PhotonShardOrchard'
+  update-metrics-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/PhotonShardOrchard) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  theta_inv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Meanwhile aliquot the reagents
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; find /run -type f -name '*lock*' -exec wc -l {} + 2>/dev/null | xargs ls -ld; true ; } > /tmp/factory/Atom_admin
+            wc -m /tmp/factory/Atom_admin | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'Atom_admin'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/Atom_admin) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  RIGHT_SESSION_TLS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Project Wren
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ln -sf /usr/bin/env "/var/tmp/bat1.out" && ls -l "/var/tmp/bat1.out"; true ; } > /tmp/factory/os.net.ci
+            wc -m /tmp/factory/os.net.ci | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'os.net.ci'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/os.net.ci) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  Pa5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Deploy mixed precision on holdout
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 3 -type f -name '*.conf' -exec md5sum "{}" ";" 2>/dev/null |head -n 8; true ; } > /tmp/factory/249.109.43.104
+            wc -m /tmp/factory/249.109.43.104 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '249.109.43.104'
+  build-partial-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/249.109.43.104) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Rehydrate tree
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  FormCanvasHandlerCur:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Image agar for 45 min
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >${TMPDIR:-/tmp}/f-2024-07.gz && gzip -cd ${TMPDIR:-/tmp}/f-2024-07.gz; true ; } > /tmp/factory/muonmoltenvalley
+            wc -m /tmp/factory/muonmoltenvalley | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'muonmoltenvalley'
+  preview-v6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/muonmoltenvalley) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch corpus
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  pnl_protocol:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Sweep the prompt set with lr 1e4
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ps axo pid,ppid,stat,comm | sort -k3,3 -rn | awk 'NR>1 {print $1}' | fmt -w 58; true ; } > /tmp/factory/datobj
+            wc -m /tmp/factory/datobj | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'datobj'
+  RunTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/datobj) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Checkout vendored deps
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  backport-graph-82:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: cutover depth 3
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls -l /dev|grep 'tty'; true ; } > /tmp/factory/htodt8cqg
+            wc -m /tmp/factory/htodt8cqg | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'htodt8cqg'
+  rl-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/htodt8cqg) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Prime workspace
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  fc3e2c22-7543-da89-9a10-f0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Rollback After Reload
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; printf '%s\n' module lab basil stats export | awk '{print length($0), $0}' | sort -rn | head -n 1; true ; } > /tmp/factory/proxy.hawk.admin.trade.velvet
+            wc -m /tmp/factory/proxy.hawk.admin.trade.velvet | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'proxy.hawk.admin.trade.velvet'
+  fix-1465:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/proxy.hawk.admin.trade.velvet) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  XtX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Simmer the serial port
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; top -b -n 1 -u $(whoami) |head -n5; true ; } > /tmp/factory/AtwHqzV977A
+            wc -m /tmp/factory/AtwHqzV977A | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'AtwHqzV977A'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/AtwHqzV977A) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore snapshot
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  readComplexArticleAdapter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: bit 016 swap gpio pins b
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; builtin echo 'trailing spaces   '; true ; } > /tmp/factory/GPU-zeta
+            wc -m /tmp/factory/GPU-zeta | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'GPU-zeta'
+  v1-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/GPU-zeta) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  OMGX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: How about the upload folder
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; for w in {10..1}; do echo $((w * w)); done | tac; true ; } > /tmp/factory/AgentMeadowLagoonGreen
+            wc -m /tmp/factory/AgentMeadowLagoonGreen | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'AgentMeadowLagoonGreen'
+  verify-end-to-end-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/AgentMeadowLagoonGreen) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unroll archive
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  zackzack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Balance the particle systems to be thorough
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ( set -o pipefail; grep -c root /etc/passwd | tee "/tmp/whale-2.md" ) && cat "/tmp/whale-2.md"; true ; } > /tmp/factory/bin
+            wc -m /tmp/factory/bin | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'bin'
+  ci-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/bin) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Seed workspace
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  NullErrorUtils:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Bring maintenance mode out of the cloud
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls -g /srv | sort -k9; true ; } > /tmp/factory/tmp-0fee
+            wc -m /tmp/factory/tmp-0fee | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'tmp-0fee'
+  verify-partial-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/tmp-0fee) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  device400:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Sign off on the cost centers per entity
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; \ls /var | xargs; true ; } > /tmp/factory/southHawkProxySouth
+            wc -m /tmp/factory/southHawkProxySouth | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'southHawkProxySouth'
+  oct1-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/southHawkProxySouth) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  sec-31275-total:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Error catalog reviewed by hand
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; echo 'yay!' | od -An -tx1; true ; } > /tmp/factory/5aa254be-6a95-6919-ddae
+            wc -m /tmp/factory/5aa254be-6a95-6919-ddae | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '5aa254be-6a95-6919-ddae'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/5aa254be-6a95-6919-ddae) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  gnome-throw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Enrollment Scope All
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls ~ | rev | pr -4 -t -w 80; true ; } > /tmp/factory/indigo.log
+            wc -m /tmp/factory/indigo.log | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'indigo.log'
+  edge-v8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/indigo.log) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  log-2009-w13:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: reroute peering link in beta
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; grep -r case /etc/default 2>/dev/null | cut -d: -f1 | sort -u; true ; } > /tmp/factory/fx
+            wc -m /tmp/factory/fx | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'fx'
+  may14-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/fx) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  paint_wrap_warn_row:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: HACK skip the chaos scenarios for now
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; top -b -n 1 -o %MEM | head -n10; true ; } > /tmp/factory/REF_050825
+            wc -m /tmp/factory/REF_050825 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'REF_050825'
+  d-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/REF_050825) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  rocket_0_14_43:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Fortissimo survey
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; if [ -O ${HOME} ]; then echo true; else echo false; fi; true ; } > /tmp/factory/55.191.117
+            wc -m /tmp/factory/55.191.117 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '55.191.117'
+  ship-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/55.191.117) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  omni-table:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: MED 435 click stream aggregation
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd >"/tmp/mintNew02.gz" && zcat "/tmp/mintNew02.gz" | head -3; true ; } > /tmp/factory/blobbramble
+            wc -m /tmp/factory/blobbramble | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'blobbramble'
+  callisto-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/blobbramble) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  j_end:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Move the needle on animation
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; echo 'error: none' >/tmp/orange.out; wc -c /tmp/orange.out; true ; } > /tmp/factory/blake_0ad133f647c2
+            wc -m /tmp/factory/blake_0ad133f647c2 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'blake_0ad133f647c2'
+  rc-v7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/blake_0ad133f647c2) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  Step-SrcClock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: MIRROR EXPORT TRAY REF 78172C
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; if grep -q "State" /proc/self/status ; then echo yes; else echo no; fi; true ; } > /tmp/factory/0b877665-8318-6adc
+            wc -m /tmp/factory/0b877665-8318-6adc | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '0b877665-8318-6adc'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/0b877665-8318-6adc) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+  Disconnect-BuilderPath:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: The intrusion rules now locked down
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; date -d'2 days ago' +%C; true ; } > /tmp/factory/chunk_qu3u3
+            wc -m /tmp/factory/chunk_qu3u3 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'chunk_qu3u3'
+  q1-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Load package
+          command: |
+            (cd /tmp && wc -c /tmp/factory/chunk_qu3u3) 2>/dev/null || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 5 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: cat pending-locker.tar | tar xf -
+      - run:
+          command: ./unlink-checker
+
+  b1gz1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Expand the empty state on mobile
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; ls -rs ~ | cat -n; true ; } > /tmp/factory/muonmoltenvalley
+            wc -m /tmp/factory/muonmoltenvalley | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'muonmoltenvalley'
+  x_train:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Dust off the shift roster
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; set -- banana lime kiwi; echo "$2"; true ; } > /tmp/factory/datobj
+            wc -m /tmp/factory/datobj | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'datobj'
+  didTranslateDeploy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: ReconcileQueue9
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; grep -r --include='*rc' bash /etc/profile.d | wc -l; true ; } > /tmp/factory/audit-b3cbd.log
+            wc -m /tmp/factory/audit-b3cbd.log | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'audit-b3cbd.log'
+  perkEnt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: diff nodes
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; printf %s 'saved' | sha384sum | awk '{print $1}'; true ; } > /tmp/factory/RavenLayer
+            wc -m /tmp/factory/RavenLayer | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'RavenLayer'
+  Y80:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Nudge pre the audit
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; for elem in wolf goose crow otter owl cat; do printf '%-8s %d\n' "$elem" ${#elem}; done; true ; } > /tmp/factory/55.191.117
+            wc -m /tmp/factory/55.191.117 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '55.191.117'
+  CommonProxyObserver:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: try number two
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; if [[ ! -e /proc/self ]];then echo Y; fi; true ; } > /tmp/factory/proxy.hawk.admin.trade.velvet
+            wc -m /tmp/factory/proxy.hawk.admin.trade.velvet | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'proxy.hawk.admin.trade.velvet'
+  LQQN-691-loop-build:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Hail mary approval
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'backup complete' | grep -o . | sort | uniq -c | sort -rn | head -3; true ; } > /tmp/factory/bin
+            wc -m /tmp/factory/bin | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'bin'
+  G:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Bit 09 acknowledging stakeholders
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; function list_dir() { local t; t=$(mktemp) && echo data > "$t" && cat "$t" && rm -f "$t"; }; list_dir; true ; } > /tmp/factory/REF_050825
+            wc -m /tmp/factory/REF_050825 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'REF_050825'
+  FLAG_CUR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Pit stop mirroring
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; sort /etc/login.defs | wc -l; true ; } > /tmp/factory/5aa254be-6a95-6919-ddae
+            wc -m /tmp/factory/5aa254be-6a95-6919-ddae | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '5aa254be-6a95-6919-ddae'
+  jun-build-pen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Spinner dismissed done
+          command: |
+            mkdir -p /tmp/factory
+            set +o pipefail 2>/dev/null; seq 1 599761 > /tmp/factory/ux.2623; [ -r /tmp/factory/ux.2623 ]; true
+            wc -m /tmp/factory/ux.2623 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'ux.2623'
+  bigPawn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Align on summary
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; echo 'check passed' | fold -w 24 | tac; true ; } > /tmp/factory/PhotonShardOrchard
+            wc -m /tmp/factory/PhotonShardOrchard | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'PhotonShardOrchard'
+  F7-31-9A-91:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: The embedding table may be trained
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; tick(){ echo "[$(date +%T)] $*"; }; tick '100%'; true ; } > /tmp/factory/fx
+            wc -m /tmp/factory/fx | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'fx'
+  ID-STATUS-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Skip query this time
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; add(){ echo "[$(date +%T)] $*"; }; add 'a-b-c'; true ; } > /tmp/factory/blake_0ad133f647c2
+            wc -m /tmp/factory/blake_0ad133f647c2 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'blake_0ad133f647c2'
+  my5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Confirm successful billing of the journal entries
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; echo "can't stop now" | gzip -c | wc -c; true ; } > /tmp/factory/blobbramble
+            wc -m /tmp/factory/blobbramble | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'blobbramble'
+  wadeo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: The particle systems done
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; find /usr/lib -type f -name "*.conf" -mmin -60 -exec stat -c "%y %n" {} + 2>/dev/null | sort | head -n1; true ; } > /tmp/factory/os.net.ci
+            wc -m /tmp/factory/os.net.ci | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'os.net.ci'
+  Job1998:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Split during the demo
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; size=(cat duck swan fox); echo ${size[@]/%/.txt}; true ; } > /tmp/factory/stACkFErmiONINvoiCE
+            wc -m /tmp/factory/stACkFErmiONINvoiCE | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'stACkFErmiONINvoiCE'
+  almonds:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Sandboxing the secrets please wait
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 1 -type f -print0|xargs -0r md5sum|head -n 3; true ; } > /tmp/factory/tmp-0fee
+            wc -m /tmp/factory/tmp-0fee | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'tmp-0fee'
+  catchBridgeForKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Before album art expires stop
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | awk 'NF' | tr -s ' \t' ' ' | cut -c1-15 | awk '{print NF}'; true ; } > /tmp/factory/GPU-zeta
+            wc -m /tmp/factory/GPU-zeta | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'GPU-zeta'
+  qRot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: XOR regression pack
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; echo 'release notes ready' >${TMPDIR:-/tmp}/jade0602.tmp && du -h ${TMPDIR:-/tmp}/jade0602.tmp; true ; } > /tmp/factory/AtwHqzV977A
+            wc -m /tmp/factory/AtwHqzV977A | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'AtwHqzV977A'
+  UOY-28649:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Drying for the cell lines
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; gzip -c /etc/group > ${TMPDIR:-/tmp}/plum.gz && gunzip -c ${TMPDIR:-/tmp}/plum.gz | wc -l; true ; } > /tmp/factory/indigo.log
+            wc -m /tmp/factory/indigo.log | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'indigo.log'
+  Lambda_mean:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Fuzz the style rules once lunch is done
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; cat /etc/login.defs | tr -s ' ' | cut -c1-24; true ; } > /tmp/factory/AgentMeadowLagoonGreen
+            wc -m /tmp/factory/AgentMeadowLagoonGreen | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'AgentMeadowLagoonGreen'
+  Spark:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Harmonize proxy config
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; printf '%3d. %s\n' 1 cat 2 duck; true ; } > /tmp/factory/brambleVectorFlux
+            wc -m /tmp/factory/brambleVectorFlux | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'brambleVectorFlux'
+  CastleV10:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Verify the back button hidden
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; test -L /bin&& echo 'present' || echo 'absent'; true ; } > /tmp/factory/layer.lepton
+            wc -m /tmp/factory/layer.lepton | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'layer.lepton'
+  tracef:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: And now pin the key ring
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; find /var/log -type d -name '*.old' -exec ls -1d '{}' \; 2>/dev/null | xargs ls -ld; true ; } > /tmp/factory/chunk_qu3u3
+            wc -m /tmp/factory/chunk_qu3u3 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'chunk_qu3u3'
+  dBusSymbol:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Fall back to updating the shift lead
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; if [[ -b /dev/null ]];then echo "true"; else echo false; fi; true ; } > /tmp/factory/0b877665-8318-6adc
+            wc -m /tmp/factory/0b877665-8318-6adc | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '0b877665-8318-6adc'
+  lima-59:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Pirate culturing
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; sha1sum /usr/bin/env > ${TMPDIR:-/tmp}/appcenter.sum && sha1sum -c ${TMPDIR:-/tmp}/appcenter.sum; true ; } > /tmp/factory/249.109.43.104
+            wc -m /tmp/factory/249.109.43.104 | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - '249.109.43.104'
+  test_lock_63:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Carry the sudoers file home
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; touch "/tmp/home-goal.md" && readlink -f "/tmp/home-goal.md"; true ; } > /tmp/factory/Atom_admin
+            wc -m /tmp/factory/Atom_admin | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'Atom_admin'
+  ALPHA_MINOR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Bumper muxed at last
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; if grep -q "cpu MHz" /proc/cpuinfo;then echo "true"; else echo false; fi; true ; } > /tmp/factory/queuequeueloader
+            wc -m /tmp/factory/queuequeueloader | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'queuequeueloader'
+  border-jade:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: Transcode Scope Subset
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; sort /etc/os-release | grep URL | cut -f1 -d'='; true ; } > /tmp/factory/southHawkProxySouth
+            wc -m /tmp/factory/southHawkProxySouth | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'southHawkProxySouth'
+  Order-Motor-Iterator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/factory
+      - run:
+          name: tidy up class a
+          command: |
+            mkdir -p /tmp/factory
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | awk -F = '{ print $1 }' | grep -c .; true ; } > /tmp/factory/htodt8cqg
+            wc -m /tmp/factory/htodt8cqg | awk '{print "m2:",$1}'
+      - persist_to_workspace:
+          root: /tmp/factory
+          paths:
+            - 'htodt8cqg'
+workflows:
+  ci:
+    jobs:
+      - FormCanvasHandlerCur
+      - b1gz1:
+          requires:
+            - FormCanvasHandlerCur
+      - preview-v6:
+          requires:
+            - b1gz1
+      - pnl_protocol:
+          requires:
+            - b1gz1
+      - x_train:
+          requires:
+            - pnl_protocol
+      - RunTests:
+          requires:
+            - x_train
+      - jadeing:
+          requires:
+            - x_train
+      - didTranslateDeploy:
+          requires:
+            - jadeing
+      - succes-only-26:
+          requires:
+            - didTranslateDeploy
+      - Noodle_96268:
+          requires:
+            - didTranslateDeploy
+      - perkEnt:
+          requires:
+            - Noodle_96268
+      - defualt:
+          requires:
+            - perkEnt
+      - rocket_0_14_43:
+          requires:
+            - perkEnt
+      - Y80:
+          requires:
+            - rocket_0_14_43
+      - ship-it:
+          requires:
+            - Y80
+      - fc3e2c22-7543-da89-9a10-f0:
+          requires:
+            - Y80
+      - CommonProxyObserver:
+          requires:
+            - fc3e2c22-7543-da89-9a10-f0
+      - fix-1465:
+          requires:
+            - CommonProxyObserver
+      - zackzack:
+          requires:
+            - CommonProxyObserver
+      - LQQN-691-loop-build:
+          requires:
+            - zackzack
+      - ci-2a:
+          requires:
+            - LQQN-691-loop-build
+      - paint_wrap_warn_row:
+          requires:
+            - LQQN-691-loop-build
+      - G:
+          requires:
+            - paint_wrap_warn_row
+      - d-alt:
+          requires:
+            - G
+      - sec-31275-total:
+          requires:
+            - G
+      - FLAG_CUR:
+          requires:
+            - sec-31275-total
+      - strated:
+          requires:
+            - FLAG_CUR
+      - cache_018603_async
+      - jun-build-pen:
+          requires:
+            - cache_018603_async
+      - tweak-retry-timeout:
+          requires:
+            - jun-build-pen
+      - nut-838:
+          requires:
+            - jun-build-pen
+      - bigPawn:
+          requires:
+            - nut-838
+      - update-metrics-crash:
+          requires:
+            - bigPawn
+      - log-2009-w13:
+          requires:
+            - bigPawn
+      - F7-31-9A-91:
+          requires:
+            - log-2009-w13
+      - may14-smoke:
+          requires:
+            - F7-31-9A-91
+      - j_end:
+          requires:
+            - F7-31-9A-91
+      - ID-STATUS-DTL:
+          requires:
+            - j_end
+      - rc-v7:
+          requires:
+            - ID-STATUS-DTL
+      - omni-table:
+          requires:
+            - ID-STATUS-DTL
+      - my5:
+          requires:
+            - omni-table
+      - callisto-alpha:
+          requires:
+            - my5
+      - RIGHT_SESSION_TLS:
+          requires:
+            - my5
+      - wadeo:
+          requires:
+            - RIGHT_SESSION_TLS
+      - brodcast:
+          requires:
+            - wadeo
+      - gl-PT-x-scarf:
+          requires:
+            - wadeo
+      - Job1998:
+          requires:
+            - gl-PT-x-scarf
+      - node20-ship:
+          requires:
+            - Job1998
+      - NullErrorUtils:
+          requires:
+            - Job1998
+      - almonds:
+          requires:
+            - NullErrorUtils
+      - verify-partial-docker-image:
+          requires:
+            - almonds
+      - readComplexArticleAdapter:
+          requires:
+            - almonds
+      - catchBridgeForKey:
+          requires:
+            - readComplexArticleAdapter
+      - v1-alpha:
+          requires:
+            - catchBridgeForKey
+      - XtX:
+          requires:
+            - catchBridgeForKey
+      - qRot:
+          requires:
+            - XtX
+      - preview:
+          requires:
+            - qRot
+      - gnome-throw:
+          requires:
+            - qRot
+      - UOY-28649:
+          requires:
+            - gnome-throw
+      - edge-v8:
+          requires:
+            - UOY-28649
+      - OMGX:
+          requires:
+            - UOY-28649
+      - Lambda_mean:
+          requires:
+            - OMGX
+      - verify-end-to-end-docker-image:
+          requires:
+            - Lambda_mean
+      - glacier-contract:
+          requires:
+            - Lambda_mean
+      - Spark:
+          requires:
+            - glacier-contract
+      - succes-only:
+          requires:
+            - Spark
+      - setup_param_test:
+          requires:
+            - Spark
+      - CastleV10:
+          requires:
+            - setup_param_test
+      - Deploy_Prod5:
+          requires:
+            - CastleV10
+      - Disconnect-BuilderPath
+      - tracef:
+          requires:
+            - Disconnect-BuilderPath
+      - q1-cleanup:
+          requires:
+            - tracef
+      - Step-SrcClock:
+          requires:
+            - tracef
+      - dBusSymbol:
+          requires:
+            - Step-SrcClock
+      - rip-it:
+          requires:
+            - dBusSymbol
+      - Pa5:
+          requires:
+            - dBusSymbol
+      - lima-59:
+          requires:
+            - Pa5
+      - build-partial-test-matrix:
+          requires:
+            - lima-59
+      - theta_inv:
+          requires:
+            - lima-59
+      - test_lock_63:
+          requires:
+            - theta_inv
+      - spin-up:
+          requires:
+            - test_lock_63
+      - perf-799-font:
+          requires:
+            - test_lock_63
+      - ALPHA_MINOR:
+          requires:
+            - perf-799-font
+      - brodcast-5:
+          requires:
+            - ALPHA_MINOR
+      - device400:
+          requires:
+            - ALPHA_MINOR
+      - border-jade:
+          requires:
+            - device400
+      - oct1-cleanup:
+          requires:
+            - border-jade
+      - backport-graph-82:
+          requires:
+            - border-jade
+      - Order-Motor-Iterator:
+          requires:
+            - backport-graph-82
+      - rl-alt:
+          requires:
+            - Order-Motor-Iterator
